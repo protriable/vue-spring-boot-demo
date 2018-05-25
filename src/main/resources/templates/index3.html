@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Demo</title>
+</head>
+<body id="demo">
+    <div :class="{ active: isActive} ">a</div>
+    <div class="static" v-bind:class="{ active: isActive, 'text-danger': hasError ">b</div>
+    <div :class="classObject"></div>
+    <div :class="[activeClass, errorClass]"></div>
+    <my-component class="baz boo"></my-component>
+    <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">aaa</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+        var vm = new Vue({
+            el: '#demo',
+            data: {
+                isActive: true,
+                hasError: false,
+                classObject: {
+                    active: true,
+                    'text-danger': false
+                },
+                activeColor: 'red',
+                fontSize: 30
+            }
+        });
+        Vue.component('my-component', {
+            template: "<p class='foo bar'>Hi</p>"
+        });
+</script>
+</html>
